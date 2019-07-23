@@ -17,7 +17,7 @@ import okhttp3.RequestBody;
 
 /**
  * RequestUtils
- *
+ * 创建请求的方法
  * @author Administrator
  * @date 2019/1/16 0016
  */

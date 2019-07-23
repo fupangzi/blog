@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * RetrofitManager
- *
+ * RetrofitManager请求管理器 设置读取时间
  * @author Administrator
  * @date 2019/1/16 0016
  */

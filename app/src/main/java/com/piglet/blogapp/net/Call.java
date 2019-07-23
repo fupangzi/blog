@@ -15,7 +15,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * BaseObserver
- *
+ * 请求重写 加入判断有无网络等功能
  * @author Administrator
  * @date 2019/1/16 0016
  */

@@ -17,7 +17,7 @@ import retrofit2.http.Part;
 
 /**
  * NetService
- *
+ * retrofit注解请求方法
  * @author Administrator
  * @date 2019/1/16 0016
  */

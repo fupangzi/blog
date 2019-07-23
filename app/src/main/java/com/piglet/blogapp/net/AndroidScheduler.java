@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * AndroidScheduler
- *  //加入android线程
+ * 加入android线程
  * @author Administrator
  * @date 2019/1/15 0015
  */

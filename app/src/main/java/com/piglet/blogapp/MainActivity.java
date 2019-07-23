@@ -72,7 +72,8 @@ public class MainActivity extends BaseActivity {
         rlTitlePadding.setPadding(0, StatusBarUtil.getStatusBarHeight(this), 0, 0);
         mainVpAdapter = new MainVpAdapter(getSupportFragmentManager(), initFragments());
         viewPage.setAdapter(mainVpAdapter);
-        viewPage.setOffscreenPageLimit(4);
+        viewPage.setOffscreenPageLimit(4);//设置缓存页面为四个
+        //设置btn点击跳转页面
         bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

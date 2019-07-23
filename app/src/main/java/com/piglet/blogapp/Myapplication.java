@@ -20,6 +20,18 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
  */
 public class Myapplication extends Application {
     static {
+        initSmartRefreshlayout();
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
+    /**
+     * 自定义修改全局下拉控件的样式
+     */
+   static   void initSmartRefreshlayout(){
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
             @Override
@@ -37,11 +49,5 @@ public class Myapplication extends Application {
             }
         });
     }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-    }
-
 
 }
