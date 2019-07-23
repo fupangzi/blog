@@ -8,4 +8,5 @@
     <color name="yelloTitle">#f6da13</color>
     <color name="textBaseColor">#333333</color>
 
+    <color name="selectorWhite2Gray">#22000000</color>
 </resources>
