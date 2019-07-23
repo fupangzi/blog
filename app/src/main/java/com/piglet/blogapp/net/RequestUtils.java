@@ -5,6 +5,8 @@ package com.piglet.blogapp.net;
 import android.content.SharedPreferences;
 
 
+import com.piglet.blogapp.bean.ArticleListBean;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,6 +59,11 @@ public class RequestUtils {
                 .compose(Transformer.<String>switchSchedulers())
                 .subscribe(observer);
     }
-
+    public static  void articles(Map<String,String> map,Call<ArticleListBean> observer){
+        RetrofitManager.getNetService(NetService.class)
+                .articles(map.get("current"),map.get("size"))
+                .compose(Transformer.<ArticleListBean>switchSchedulers())
+                .subscribe(observer);
+    }
 
 }

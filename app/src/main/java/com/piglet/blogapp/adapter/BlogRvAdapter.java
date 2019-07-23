@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.piglet.blogapp.R;
+import com.piglet.blogapp.bean.ArticleListBean;
 
 import java.util.List;
 
@@ -23,14 +24,14 @@ import butterknife.ButterKnife;
  */
 public class BlogRvAdapter extends RecyclerView.Adapter<BlogRvAdapter.ViewHolder> {
     private Context mContext;
-    private List<String> mList;
+    private List<ArticleListBean.DataBean.RecordsBean> mList;
     private OnClickListener onClickListener;
 
     public void setOnClickListener(OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }
 
-    public BlogRvAdapter(Context mContext, List<String> mList) {
+    public BlogRvAdapter(Context mContext, List<ArticleListBean.DataBean.RecordsBean> mList) {
         this.mContext = mContext;
         this.mList = mList;
     }
@@ -44,6 +45,14 @@ public class BlogRvAdapter extends RecyclerView.Adapter<BlogRvAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolde, final int i) {
+        ArticleListBean.DataBean.RecordsBean bean = mList.get(i);
+        if(bean!=null){
+            viewHolde.tvDate.setText(String.valueOf(bean.getCreateTime()));
+            viewHolde.tvContent.setText(String.valueOf(bean.getSummary()));
+            viewHolde.tvTitle.setText(String.valueOf(bean.getTitle()));
+            viewHolde.tvMessageCount.setText(String.valueOf(" "+bean.getCommentNum()));
+            viewHolde.tvSeeCount.setText(" "+String.valueOf(bean.getViewNum()));
+        }
         viewHolde.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

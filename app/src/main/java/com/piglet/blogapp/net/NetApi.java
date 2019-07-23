@@ -8,7 +8,7 @@ package com.piglet.blogapp.net;
  * @date 2019/1/16 0016
  */
 public interface NetApi {
-    String BASEURL = "http://v.juhe.cn/todayOnhistory/";
-    String getData = "queryEvent.php";
+    final   String BASEURL = "http://192.168.10.224:8080/";
+    String articles = "/articles";
 }
 

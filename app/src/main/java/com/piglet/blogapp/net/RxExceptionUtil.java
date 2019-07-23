@@ -1,5 +1,7 @@
 package com.piglet.blogapp.net;
 
+import android.util.Log;
+
 import org.json.JSONException;
 
 import java.net.SocketTimeoutException;
@@ -17,6 +19,7 @@ import retrofit2.HttpException;
  */
 public class RxExceptionUtil {
     public static String exceptionHandler(Throwable e){
+        Log.e("exmessage",e.getMessage());
         String errorMsg = "未知错误";
         if (e instanceof UnknownHostException) {
             errorMsg = "网络不可用";
@@ -28,6 +31,8 @@ public class RxExceptionUtil {
         } else if (e instanceof ParseException || e instanceof JSONException
                 || e instanceof JSONException) {
             errorMsg = "数据解析错误";
+        }else{
+            errorMsg=e.getMessage();
         }
         return errorMsg;
     }

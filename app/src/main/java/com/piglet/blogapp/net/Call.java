@@ -20,7 +20,7 @@ import io.reactivex.disposables.Disposable;
  * @date 2019/1/16 0016
  */
 public abstract class Call<T> implements Observer<T> {
-    private static final String TAG = "BaseObserver";
+    private static final String TAG = "Call";
     private boolean mShowDialog;
     private ProgressDialog progressDialog;
     private Context context;
@@ -43,7 +43,6 @@ public abstract class Call<T> implements Observer<T> {
         if (disposable.isDisposed()) {
             disposable.dispose();
         }
-
         hidDialog();
         onFailure(e, RxExceptionUtil.exceptionHandler(e));
     }

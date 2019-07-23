@@ -3,8 +3,10 @@ package com.piglet.blogapp.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +15,17 @@ import com.piglet.blogapp.R;
 import com.piglet.blogapp.WebViewActivity;
 import com.piglet.blogapp.adapter.BlogRvAdapter;
 import com.piglet.blogapp.base.BaseFragment;
+import com.piglet.blogapp.bean.ArticleListBean;
+import com.piglet.blogapp.net.Call;
+import com.piglet.blogapp.net.RequestUtils;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,9 +42,12 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.rv_blogs)
     RecyclerView rvBlogs;
     Unbinder unbinder;
-
-    List<String> dataList = new ArrayList<>();
+    @BindView(R.id.srl)
+    SmartRefreshLayout srl;
+    private int page;
+    List<ArticleListBean.DataBean.RecordsBean> dataList = new ArrayList<>();
     private BlogRvAdapter blogRvAdapter;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -49,19 +62,29 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initData(Bundle savedInstanceState) {
-        dataList.add("");
-        dataList.add("");
         blogRvAdapter = new BlogRvAdapter(context, dataList);
         blogRvAdapter.setOnClickListener(new BlogRvAdapter.OnClickListener() {
             @Override
             public void onClick(int i) {
-                Intent intent=new Intent(context, WebViewActivity.class);
-                intent.putExtra("url","https://github.com/He-Polaris/vblog-web");
+                Intent intent = new Intent(context, WebViewActivity.class);
+                intent.putExtra("url", "https://github.com/He-Polaris/vblog-web");
                 startActivity(intent);
             }
         });
         rvBlogs.setLayoutManager(new LinearLayoutManager(context));
         rvBlogs.setAdapter(blogRvAdapter);
+        getDate(true);
+        srl.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                getDate(false);
+            }
+
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                getDate(true);
+            }
+        });
     }
 
     @Override
@@ -70,6 +93,39 @@ public class HomeFragment extends BaseFragment {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
         return rootView;
+    }
+
+    /**
+     * 获取首页数据
+     */
+    public void getDate(boolean isClear) {
+        if (isClear) {
+            page = 1;
+
+        } else {
+            page++;
+        }
+        Map<String, String> map = new HashMap<>();
+        map.put("current", page + "");
+        map.put("size", "10");
+        // map.put("date","10");
+        RequestUtils.articles(map,new Call<ArticleListBean>(context) {
+            @Override
+            public void onSuccess(ArticleListBean result) {
+                srl.finishRefresh();
+                if (result.getSuccess()) {
+                    dataList.addAll(result.getData().getRecords());
+                    blogRvAdapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Throwable e, String errorMsg) {
+                srl.finishRefresh(false);
+                Log.e("aaa",errorMsg);
+            }
+        });
     }
 
     @Override
