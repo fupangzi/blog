@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp"
+    >
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="5dp"
+       >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:id="@+id/tv_date"
+        android:text="2018-07-05 12:12"
+        android:textSize="12sp" />
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginRight="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="标题"
+        android:layout_toLeftOf="@id/tv_date"
+        android:textColor="@color/textBaseColor"
+        android:textSize="15sp" />
+
+
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title"
+        android:layout_marginBottom="5dp"
+        android:minLines="2"
+        android:ellipsize="end"
+        android:text="内容" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="作者"
+        android:textColor="@color/textBaseColor"
+        android:layout_below="@id/tv_content"
+        />
+    <TextView
+        android:id="@+id/tv_message_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_content"
+        android:layout_alignParentRight="true"
+        android:drawableLeft="@drawable/ic_message_black_24dp"
+        android:gravity="center"
+        android:text="123" />
+
+    <TextView
+        android:id="@+id/tv_see_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_content"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/tv_message_count"
+        android:drawableLeft="@drawable/ic_remove_red_eye_black_24dp"
+        android:gravity="center"
+        android:text="123" />
+   </RelativeLayout>
+</android.support.v7.widget.CardView>

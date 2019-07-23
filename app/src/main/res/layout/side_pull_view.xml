@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/minefrgment_head"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/minefragment_head"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/civ_img"
+            android:src="@mipmap/ic_launcher"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="名字"
+            android:id="@+id/tv_name"
+            android:textSize="20sp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/civ_img"
+            android:layout_alignTop="@id/civ_img"
+            android:textColor="@color/white"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个签"
+            android:id="@+id/tv_signature"
+            android:textSize="20sp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/civ_img"
+            android:layout_alignBottom="@id/civ_img"
+            android:textColor="@color/white"
+            />
+    </RelativeLayout>
+</RelativeLayout>

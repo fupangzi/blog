@@ -6,13 +6,86 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.v4.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/drwaerlayout"
+        >
+
+        <!--主页面布局-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rl_title_padding"
+                android:background="@color/yelloTitle"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/rl_t"
+                    >
+                    <ImageView
+                        android:id="@+id/gd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:padding="10dp"
+                        android:src="@drawable/hbgd" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimary1"
+                        android:text="Blog"
+                        />
+                </RelativeLayout>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_below="@id/rl_title_padding"
+                android:background="@drawable/title_shape"></View>
+
+
+            <com.piglet.blogapp.view.NoScrollViewPager
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="60dp"
+                android:id="@+id/view_page"
+                android:layout_below="@id/rl_title_padding"
+                ></com.piglet.blogapp.view.NoScrollViewPager>
+
+            <android.support.design.widget.BottomNavigationView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:labelVisibilityMode="labeled"
+                android:id="@+id/bnv"
+                android:background="?android:attr/windowBackground"
+                android:theme="@style/AppTheme"
+                android:layout_alignParentBottom="true"
+                app:menu="@menu/menu_home"
+                >
+
+            </android.support.design.widget.BottomNavigationView>
+        </RelativeLayout>
+
+
+        <!--左侧菜单页面布局-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/white"
+            android:fitsSystemWindows="false">
+            <include layout="@layout/side_pull_view"></include>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.DrawerLayout>
 
 </android.support.constraint.ConstraintLayout>
