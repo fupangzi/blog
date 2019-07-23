@@ -1,6 +1,7 @@
 package com.piglet.blogapp.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.piglet.blogapp.R;
+import com.piglet.blogapp.WebViewActivity;
 import com.piglet.blogapp.adapter.BlogRvAdapter;
 import com.piglet.blogapp.base.BaseFragment;
 
@@ -50,6 +52,14 @@ public class HomeFragment extends BaseFragment {
         dataList.add("");
         dataList.add("");
         blogRvAdapter = new BlogRvAdapter(context, dataList);
+        blogRvAdapter.setOnClickListener(new BlogRvAdapter.OnClickListener() {
+            @Override
+            public void onClick(int i) {
+                Intent intent=new Intent(context, WebViewActivity.class);
+                intent.putExtra("url","https://github.com/He-Polaris/vblog-web");
+                startActivity(intent);
+            }
+        });
         rvBlogs.setLayoutManager(new LinearLayoutManager(context));
         rvBlogs.setAdapter(blogRvAdapter);
     }

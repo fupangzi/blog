@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WebViewActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rl_title_padding"
+        android:background="@color/yelloTitle"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/rl_t"
+            >
+            <ImageView
+                android:id="@+id/gd"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_arrow_back_black_24dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimary1"
+                android:text="文章详情"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_below="@id/rl_title_padding"
+        android:background="@drawable/title_shape"></View>
+    <com.piglet.blogapp.view.NewWebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_title_padding"
+        android:id="@+id/web_view"
+        ></com.piglet.blogapp.view.NewWebView>
+</RelativeLayout>

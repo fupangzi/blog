@@ -49,7 +49,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.drwaerlayout)
     DrawerLayout drwaerlayout;
     @BindView(R.id.view_page)
-    NoScrollViewPager viewPage;
+    ViewPager viewPage;
     @BindView(R.id.bnv)
     BottomNavigationView bnv;
     //存储碎片页面
@@ -92,6 +92,36 @@ public class MainActivity extends BaseActivity {
                         break;
                 }
                 return true;
+            }
+        });
+        viewPage.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                switch (i){
+                    case 0:
+                        bnv.setSelectedItemId(R.id.meun_home);
+                        break;
+                    case 1:
+                        bnv.setSelectedItemId(R.id.meun_home2);
+                        break;
+                    case 2:
+                        bnv.setSelectedItemId(R.id.meun_home3);
+                        break;
+                    case 3:
+                        bnv.setSelectedItemId(R.id.meun_home4);
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
             }
         });
     }

@@ -24,7 +24,11 @@ import butterknife.ButterKnife;
 public class BlogRvAdapter extends RecyclerView.Adapter<BlogRvAdapter.ViewHolder> {
     private Context mContext;
     private List<String> mList;
+    private OnClickListener onClickListener;
 
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
 
     public BlogRvAdapter(Context mContext, List<String> mList) {
         this.mContext = mContext;
@@ -39,8 +43,15 @@ public class BlogRvAdapter extends RecyclerView.Adapter<BlogRvAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolde, int i) {
-
+    public void onBindViewHolder(@NonNull ViewHolder viewHolde, final int i) {
+        viewHolde.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(onClickListener!=null){
+                    onClickListener.onClick(i);
+                }
+            }
+        });
     }
 
     @Override
@@ -64,5 +75,9 @@ public class BlogRvAdapter extends RecyclerView.Adapter<BlogRvAdapter.ViewHolder
              super(itemView);
              ButterKnife.bind(this, itemView);
          }
+    }
+
+    public interface OnClickListener{
+        void onClick(int i);
     }
 }
