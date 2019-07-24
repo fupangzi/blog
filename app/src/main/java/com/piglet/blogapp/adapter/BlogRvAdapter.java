@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 
 /**
  * BlogRvAdapter
- *
+ * 首页列表适配器
  * @author Administrator
  * @date 2019/7/23 0023
  */
@@ -50,8 +50,9 @@ public class BlogRvAdapter extends RecyclerView.Adapter<BlogRvAdapter.ViewHolder
             viewHolde.tvDate.setText(String.valueOf(bean.getCreateTime()));
             viewHolde.tvContent.setText(String.valueOf(bean.getSummary()));
             viewHolde.tvTitle.setText(String.valueOf(bean.getTitle()));
-            viewHolde.tvMessageCount.setText(String.valueOf(" "+bean.getCommentNum()));
-            viewHolde.tvSeeCount.setText(" "+String.valueOf(bean.getViewNum()));
+            viewHolde.tvMessageCount.setText(" "+bean.getCommentNum());
+            viewHolde.tvSeeCount.setText(" "+bean.getViewNum());
+            viewHolde.tvName.setText(bean.getNickname());
         }
         viewHolde.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +81,9 @@ public class BlogRvAdapter extends RecyclerView.Adapter<BlogRvAdapter.ViewHolder
         TextView tvMessageCount;
         @BindView(R.id.tv_see_count)
         TextView tvSeeCount;
+        @BindView(R.id.tv_name)
+        TextView tvName;
+
          public ViewHolder(@NonNull View itemView) {
              super(itemView);
              ButterKnife.bind(this, itemView);

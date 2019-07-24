@@ -52,8 +52,6 @@ public class RequestUtils {
         File file1 = new File("path");
         RequestBody  responseBody=RequestBody.create(MediaType.parse("application/otcet-stream"),file1);
         MultipartBody.Part body=MultipartBody.Part.createFormData("aaa","aaa",responseBody);
-
-
         RetrofitManager.getNetService(NetService.class)
                 .postDate1(new HashMap<String, String>(),body)
                 .compose(Transformer.<String>switchSchedulers())

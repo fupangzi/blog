@@ -4,6 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartPageActivity">
-    
+    tools:context=".activity.StartPageActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rl_title_padding"
+            android:background="@color/yelloTitle"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/rl_t"
+                >
+
+                <ImageView
+                    android:id="@+id/gd"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:src="@drawable/hbgd" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimary1"
+                    android:text="Blog"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    <com.eftimoff.androipathview.PathView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pathView"
+        android:layout_margin="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:pathColor="@android:color/white"
+        app:svg="@raw/log" />
 </android.support.constraint.ConstraintLayout>

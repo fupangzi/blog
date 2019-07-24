@@ -21,6 +21,7 @@ import com.piglet.blogapp.net.RequestUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.xm.emptylayout.EmptyLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,9 +45,12 @@ public class HomeFragment extends BaseFragment {
     Unbinder unbinder;
     @BindView(R.id.srl)
     SmartRefreshLayout srl;
+    @BindView(R.id.empty)
+    EmptyLayout empty;
     private int page;
     List<ArticleListBean.DataBean.RecordsBean> dataList = new ArrayList<>();
     private BlogRvAdapter blogRvAdapter;
+    private  boolean isLoading;
 
     @Override
     public void onAttach(Context context) {
@@ -73,7 +77,15 @@ public class HomeFragment extends BaseFragment {
         });
         rvBlogs.setLayoutManager(new LinearLayoutManager(context));
         rvBlogs.setAdapter(blogRvAdapter);
-        getDate(true);
+        //设置null页面刷新监听事件
+        empty.setAllButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDate(true);
+            }
+        });
+
+        //设置下拉监听事件
         srl.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
@@ -85,6 +97,11 @@ public class HomeFragment extends BaseFragment {
                 getDate(true);
             }
         });
+        getDate(true);
+        empty.showLoading();
+
+
+
     }
 
     @Override
@@ -98,34 +115,42 @@ public class HomeFragment extends BaseFragment {
     /**
      * 获取首页数据
      */
-    public void getDate(boolean isClear) {
-        if (isClear) {
-            page = 1;
+    public void getDate(final boolean isClear) {
+        if(!isLoading){
+            if (isClear) {
+                page = 1;
 
-        } else {
-            page++;
-        }
-        Map<String, String> map = new HashMap<>();
-        map.put("current", page + "");
-        map.put("size", "10");
-        // map.put("date","10");
-        RequestUtils.articles(map,new Call<ArticleListBean>(context) {
-            @Override
-            public void onSuccess(ArticleListBean result) {
-                srl.finishRefresh();
-                if (result.getSuccess()) {
-                    dataList.addAll(result.getData().getRecords());
-                    blogRvAdapter.notifyDataSetChanged();
+            } else {
+                page++;
+            }
+            Map<String, String> map = new HashMap<>();
+            map.put("current", page + "");
+            map.put("size", "10");
+            // map.put("date","10");
+            isLoading=true;
+            RequestUtils.articles(map, new Call<ArticleListBean>(context) {
+                @Override
+                public void onSuccess(ArticleListBean result) {
+                    isLoading=false;
+                    if (result.getSuccess()) {
+                        List<ArticleListBean.DataBean.RecordsBean> records = result.getData().getRecords();
+                        hideLodingLayout(empty,srl,records,isClear,dataList);
+                        dataList.addAll(records);
+                        blogRvAdapter.notifyDataSetChanged();
+                    }else{
+                        showErrLayout(empty,srl,isClear);
+                    }
+
                 }
 
-            }
+                @Override
+                public void onFailure(Throwable e, String errorMsg) {
+                    showErrLayout(empty,srl,isClear);
+                    isLoading=false;
+                }
+            });
+        }
 
-            @Override
-            public void onFailure(Throwable e, String errorMsg) {
-                srl.finishRefresh(false);
-                Log.e("aaa",errorMsg);
-            }
-        });
     }
 
     @Override

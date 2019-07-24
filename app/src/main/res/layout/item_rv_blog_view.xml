@@ -53,6 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="作者"
+        android:id="@+id/tv_name"
         android:textColor="@color/textBaseColor"
         android:layout_below="@id/tv_content"
         />
