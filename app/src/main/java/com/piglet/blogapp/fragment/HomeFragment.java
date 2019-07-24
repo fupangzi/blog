@@ -126,7 +126,8 @@ public class HomeFragment extends BaseFragment {
             Map<String, String> map = new HashMap<>();
             map.put("current", page + "");
             map.put("size", "10");
-            // map.put("date","10");
+             map.put("date","");
+            map.put("tag","");
             isLoading=true;
             RequestUtils.articles(map, new Call<ArticleListBean>(context) {
                 @Override

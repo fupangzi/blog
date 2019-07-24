@@ -45,5 +45,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:pathColor="@android:color/white"
-        app:svg="@raw/log" />
+        />
 </android.support.constraint.ConstraintLayout>

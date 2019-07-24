@@ -4,6 +4,7 @@ package com.piglet.blogapp.net;
 
 
 import com.piglet.blogapp.bean.ArticleListBean;
+import com.piglet.blogapp.bean.FileBean;
 
 import java.util.List;
 import java.util.Map;
@@ -52,7 +53,13 @@ public interface NetService {
      * @return
      */
     @GET(NetApi.articles)
-    Observable<ArticleListBean> articles(@Query("current")String current,@Query("size")String size);
+    Observable<ArticleListBean> articles(@Query("current")String current,@Query("size")String size,@Query("date")String date,@Query("tag")String tag);
+    /**
+     * 获取归档
+     * @return
+     */
+    @GET(NetApi.file)
+    Observable<FileBean> file();
 
 
 }

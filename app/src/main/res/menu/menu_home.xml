@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
    <item android:icon="@drawable/jiayuan" android:title="首页" android:id="@+id/meun_home"></item>
-    <item android:icon="@drawable/jiayuan" android:title="待定" android:id="@+id/meun_home2"></item>
+    <item android:icon="@drawable/jiayuan" android:title="文章归档" android:id="@+id/meun_home2"></item>
     <item android:icon="@drawable/ic_launcher" android:title="待定" android:id="@+id/meun_home3"></item>
     <item android:icon="@drawable/jiayuan" android:title="待定" android:id="@+id/meun_home4"></item>
 </menu>

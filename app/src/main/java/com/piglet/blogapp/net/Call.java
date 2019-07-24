@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.view.View;
 
 
+import com.piglet.blogapp.view.MprogressDialog;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -22,7 +23,7 @@ import io.reactivex.disposables.Disposable;
 public abstract class Call<T> implements Observer<T> {
     private static final String TAG = "Call";
     private boolean mShowDialog;
-    private ProgressDialog progressDialog;
+    private MprogressDialog progressDialog;
     private Context context;
     private Disposable disposable;
 
@@ -69,7 +70,7 @@ public abstract class Call<T> implements Observer<T> {
         } else {
             //联网判断需不需要显示加载框
             if (progressDialog == null && mShowDialog == true) {
-                progressDialog = new ProgressDialog(context);
+                progressDialog = new MprogressDialog(context);
                 progressDialog.show();
             }
         }
