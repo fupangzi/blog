@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 
 import com.piglet.blogapp.bean.ArticleListBean;
 import com.piglet.blogapp.bean.FileBean;
+import com.piglet.blogapp.bean.TagBean;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -76,5 +77,17 @@ public class RequestUtils {
                 .compose(Transformer.<FileBean>switchSchedulers())
                 .subscribe(observer);
     }
+
+    /**
+     * 获取归档列表
+     * @param observer
+     */
+    public static  void tags(Call<TagBean> observer){
+        RetrofitManager.getNetService(NetService.class)
+                .tags()
+                .compose(Transformer.<TagBean>switchSchedulers())
+                .subscribe(observer);
+    }
+
 
 }

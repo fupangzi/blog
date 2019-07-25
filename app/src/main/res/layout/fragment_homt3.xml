@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<com.xm.emptylayout.EmptyLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/empty"
+    >
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="第三个"
-        />
-</RelativeLayout>
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:overScrollMode="never"
+        android:id="@+id/rv_tags"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+</com.xm.emptylayout.EmptyLayout>

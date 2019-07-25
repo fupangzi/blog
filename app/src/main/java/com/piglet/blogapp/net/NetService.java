@@ -5,6 +5,7 @@ package com.piglet.blogapp.net;
 
 import com.piglet.blogapp.bean.ArticleListBean;
 import com.piglet.blogapp.bean.FileBean;
+import com.piglet.blogapp.bean.TagBean;
 
 import java.util.List;
 import java.util.Map;
@@ -60,6 +61,12 @@ public interface NetService {
      */
     @GET(NetApi.file)
     Observable<FileBean> file();
+    /**
+     * 获取标签列表
+     * @return
+     */
+    @GET(NetApi.tags)
+    Observable<TagBean> tags();
 
 
 }

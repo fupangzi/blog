@@ -11,6 +11,7 @@ public interface NetApi {
     final   String BASEURL = "http://192.168.10.224:8080/";
     String articles = "/articles"; //获取文章列表
     String file = "/articles/file"; //获取文章归档试图
+    String tags = "/tags"; //获取标签列表
 
 
 }
