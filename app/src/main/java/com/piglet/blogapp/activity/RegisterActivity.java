@@ -52,39 +52,40 @@ public class RegisterActivity extends BaseActivity {
 
                 KeyBoardUtil.hideKeyboard(RegisterActivity.this);
                 String name = actvTel.getText().toString().trim();
-                if("".equals(name)){
+                if ("".equals(name)) {
                     ToastUtils.showCenterToast("请输入用户名");
                     return;
                 }
-                String pwd=actvPsw.getText().toString().trim();
-                if("".equals(pwd)){
+                String pwd = actvPsw.getText().toString().trim();
+                if ("".equals(pwd)) {
                     ToastUtils.showCenterToast("请输入密码");
                     return;
                 }
-                register(name,pwd);
+                register(name, pwd);
                 break;
         }
     }
 
     /**
      * 注册
+     *
      * @param name 用户名
      * @param pwd  密码
      */
-    public void register(final String name, final String pwd){
-        Map<String,String> map=new HashMap<>();
-        map.put("account",name);
-        map.put("password",pwd);
-        RequestUtils.register(map, new Call<FileBean>(RegisterActivity.this,true) {
+    public void register(final String name, final String pwd) {
+        Map<String, String> map = new HashMap<>();
+        map.put("account", name);
+        map.put("password", pwd);
+        RequestUtils.register(map, new Call<FileBean>(RegisterActivity.this, true) {
             @Override
             public void onSuccess(FileBean result) {
-                if(result.getSuccess()){
-                    Intent intent=new Intent(RegisterActivity.this, LoginActivity.class);
-                    intent.putExtra("name",name);
-                    intent.putExtra("pwd",pwd);
+                if (result.getSuccess()) {
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    intent.putExtra("name", name);
+                    intent.putExtra("pwd", pwd);
                     startActivity(intent);
                     ToastUtils.showCenterToast("注册成功");
-                }else{
+                } else {
                     ToastUtils.showCenterToast("注册失败");
                 }
             }
