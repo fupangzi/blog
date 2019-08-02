@@ -61,5 +61,18 @@ public interface NetService {
     @GET(NetApi.file)
     Observable<FileBean> file();
 
-
+    /**
+     * 登录
+     * @return
+     */
+    @POST(NetApi.login)
+    @FormUrlEncoded
+    Observable<FileBean> login(@FieldMap Map<String,String> map);
+    /**
+     * 注册
+     * @return
+     */
+    @POST(NetApi.register)
+    @FormUrlEncoded
+    Observable<FileBean> register(@FieldMap Map<String,String> map);
 }

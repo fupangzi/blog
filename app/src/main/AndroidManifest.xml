@@ -19,23 +19,26 @@
         android:name=".Myapplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:networkSecurityConfig="@xml/network_config"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WebViewActivity"></activity>
-        <activity android:name=".activity.StartPageActivity" >
-
+        <activity android:name=".activity.RegisterActivity"></activity>
+        <activity android:name=".activity.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".MainActivity">
 
         </activity>
+        <activity android:name=".activity.BlogListActivity">
+
+        </activity>
+        <activity android:name=".WebViewActivity" />
+        <activity android:name=".activity.StartPageActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

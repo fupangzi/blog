@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9F9F9"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    tools:context=".activity.LoginActivity">
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_tel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/shape_bg_btn_halfcircle_white">
+
+
+        <AutoCompleteTextView
+            android:id="@+id/actv_tel"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="4dp"
+            android:background="@null"
+            android:gravity="left|center_vertical"
+            android:hint="请输入用户名"
+            android:lines="1"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:paddingLeft="20dp"
+            android:textSize="16sp"
+            android:layout_marginLeft="4dp"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_psw"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/rl_tel"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_bg_btn_halfcircle_white">
+
+        <AutoCompleteTextView
+            android:id="@+id/actv_psw"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+
+            android:gravity="left|center_vertical"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:lines="1"
+            android:maxLines="1"
+            android:padding="4dp"
+            android:paddingStart="20dp"
+            android:textSize="16sp"
+            android:layout_marginLeft="4dp"
+            android:paddingLeft="20dp" />
+
+
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv_ok"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/rl_psw"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/shape_bg_btn_halfcircle_red"
+        android:gravity="center"
+        android:text="注册账号"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

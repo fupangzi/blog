@@ -19,6 +19,16 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
  * @date 2019/7/23 0023
  */
 public class Myapplication extends Application {
+    private  static Context context;
+
+    public static Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
     static {
         initSmartRefreshlayout();
     }
@@ -26,6 +36,7 @@ public class Myapplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        context=this;
     }
 
     /**
