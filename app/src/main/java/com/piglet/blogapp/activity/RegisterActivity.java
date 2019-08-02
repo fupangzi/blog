@@ -41,6 +41,7 @@ public class RegisterActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
+        //123
     }
 
     @OnClick({R.id.rl_psw, R.id.tv_ok})
