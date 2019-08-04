@@ -79,6 +79,26 @@ public class RequestUtils {
     }
 
     /**
+     * 登录
+     * @param observer
+     */
+    public static  void login(Map<String,String> map,Call<FileBean> observer){
+        RetrofitManager.getNetService(NetService.class)
+                .login(map)
+                .compose(Transformer.<FileBean>switchSchedulers())
+                .subscribe(observer);
+    }
+    /**
+     * 注册
+     * @param observer
+     */
+    public static  void register(Map<String,String> map,Call<FileBean> observer){
+        RetrofitManager.getNetService(NetService.class)
+                .register(map)
+                .compose(Transformer.<FileBean>switchSchedulers())
+                .subscribe(observer);
+    }
+    /**
      * 获取归档列表
      * @param observer
      */

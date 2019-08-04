@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.BlogListActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_t"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yelloTitle">
+
+        <ImageView
+            android:id="@+id/gd"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="文章列表"
+            android:textColor="@color/colorPrimary1"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <com.xm.emptylayout.EmptyLayout
+        android:id="@+id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/srl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_blogs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:padding="5dp"></android.support.v7.widget.RecyclerView>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    </com.xm.emptylayout.EmptyLayout>
+</LinearLayout>
