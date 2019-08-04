@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.piglet.blogapp.MainActivity;
 import com.piglet.blogapp.R;
 import com.piglet.blogapp.base.BaseActivity;
+import com.piglet.blogapp.bean.BaseBean;
 import com.piglet.blogapp.bean.FileBean;
 import com.piglet.blogapp.net.Call;
 import com.piglet.blogapp.net.RequestUtils;
@@ -77,9 +78,9 @@ public class RegisterActivity extends BaseActivity {
         Map<String, String> map = new HashMap<>();
         map.put("account", name);
         map.put("password", pwd);
-        RequestUtils.register(map, new Call<FileBean>(RegisterActivity.this, true) {
+        RequestUtils.register(map, new Call<BaseBean>(RegisterActivity.this, true) {
             @Override
-            public void onSuccess(FileBean result) {
+            public void onSuccess(BaseBean result) {
                 if (result.getSuccess()) {
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     intent.putExtra("name", name);

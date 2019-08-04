@@ -5,7 +5,9 @@ package com.piglet.blogapp.net;
 import android.content.SharedPreferences;
 
 
+import com.google.gson.Gson;
 import com.piglet.blogapp.bean.ArticleListBean;
+import com.piglet.blogapp.bean.BaseBean;
 import com.piglet.blogapp.bean.FileBean;
 import com.piglet.blogapp.bean.TagBean;
 
@@ -21,11 +23,12 @@ import okhttp3.RequestBody;
 
 /**
  * RequestUtils
- * 创建请求的方法
+ * 创建请求的方法responsebody
  * @author Administrator
  * @date 2019/1/16 0016
  */
 public class RequestUtils {
+    private static Gson gson;
     public static  void getData(Call<String> observer){
         RetrofitManager.getNetService(NetService.class)
                 .getDate()
@@ -78,24 +81,27 @@ public class RequestUtils {
                 .subscribe(observer);
     }
 
+
+
     /**
      * 登录
-     * @param observer
+     * @param observer 网络回调
      */
-    public static  void login(Map<String,String> map,Call<FileBean> observer){
+    public static  void loginBody(Map<String,String> dataMap,Call<BaseBean> observer){
         RetrofitManager.getNetService(NetService.class)
-                .login(map)
-                .compose(Transformer.<FileBean>switchSchedulers())
+                .loginBody(createRequestBody(dataMap))
+                .compose(Transformer.<BaseBean>switchSchedulers())
                 .subscribe(observer);
     }
     /**
      * 注册
      * @param observer
      */
-    public static  void register(Map<String,String> map,Call<FileBean> observer){
+    public static  void register(Map<String,String> map,Call<BaseBean> observer){
+
         RetrofitManager.getNetService(NetService.class)
-                .register(map)
-                .compose(Transformer.<FileBean>switchSchedulers())
+                .register(createRequestBody(map))
+                .compose(Transformer.<BaseBean>switchSchedulers())
                 .subscribe(observer);
     }
     /**
@@ -107,6 +113,19 @@ public class RequestUtils {
                 .tags()
                 .compose(Transformer.<TagBean>switchSchedulers())
                 .subscribe(observer);
+    }
+
+
+    /**
+     * 创建requestBody并添加数据
+     *
+     * @param jsonData
+     */
+    private static RequestBody createRequestBody(Object jsonData){
+        if(gson==null){
+            gson=new Gson();
+        }
+        return RequestBody.create(MediaType.parse("application/json; charset=utf-8"),gson.toJson(jsonData));
     }
 
 

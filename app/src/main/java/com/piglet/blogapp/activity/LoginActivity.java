@@ -10,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.piglet.blogapp.MainActivity;
 import com.piglet.blogapp.R;
 import com.piglet.blogapp.base.BaseActivity;
+import com.piglet.blogapp.bean.BaseBean;
 import com.piglet.blogapp.bean.FileBean;
 import com.piglet.blogapp.net.Call;
 import com.piglet.blogapp.net.RequestUtils;
@@ -28,6 +30,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.RequestBody;
 
 public class LoginActivity extends BaseActivity {
 
@@ -97,13 +100,14 @@ public class LoginActivity extends BaseActivity {
         Map<String, String> map = new HashMap<>();
         map.put("account", name);
         map.put("password", pwd);
-        RequestUtils.login(map, new Call<FileBean>(LoginActivity.this, true) {
+        RequestUtils.loginBody(map, new Call<BaseBean>(LoginActivity.this, true) {
             @Override
-            public void onSuccess(FileBean result) {
+            public void onSuccess(BaseBean result) {
                 if (result.getSuccess()) {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     ToastUtils.showCenterToast("登录成功");
+                    finish();
                 } else {
                     ToastUtils.showCenterToast("登录失败");
                 }

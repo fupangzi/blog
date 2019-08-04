@@ -18,7 +18,7 @@ import okhttp3.ResponseBody;
  * @date 2019/1/16 0016
  */
 public class LogInterceptor implements Interceptor {
-    private static final String TAG = "okhttp";
+    private static final String TAG = "okhtt3p";
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request result=chain.request();
@@ -28,10 +28,12 @@ public class LogInterceptor implements Interceptor {
         Response response = chain.proceed(result);
         //获取请求成功的时间
         long t2=System.nanoTime();
-        Log.w(TAG,String.format(Locale.getDefault(), "收到响应 : %s in %.1fms%n%s",
-                response.request().url(), (t2 - t1) / 1e6d, response.headers()));
         MediaType mediaType=response.body().contentType();
         String content=response.body().string();
+        //打印请求头
+        if(response.headers().get("accesstoken")!=null){
+            Log.e("accesstoken",response.headers().get("accesstoken"));
+        }
         Log.e(TAG,"responsebody"+content);
         return response.newBuilder()
                 .body(ResponseBody.create(mediaType,content))

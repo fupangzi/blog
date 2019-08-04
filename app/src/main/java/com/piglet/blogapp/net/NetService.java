@@ -4,6 +4,7 @@ package com.piglet.blogapp.net;
 
 
 import com.piglet.blogapp.bean.ArticleListBean;
+import com.piglet.blogapp.bean.BaseBean;
 import com.piglet.blogapp.bean.FileBean;
 import com.piglet.blogapp.bean.TagBean;
 
@@ -12,9 +13,12 @@ import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -75,11 +79,21 @@ public interface NetService {
     @POST(NetApi.login)
     @FormUrlEncoded
     Observable<FileBean> login(@FieldMap Map<String,String> map);
+
+    /**
+     * 登录body
+     * @return
+     */
+    @POST(NetApi.login)
+    @Headers({"Content-Type: application/json","Accept: application/json"})
+    Observable<BaseBean> loginBody(@Body RequestBody body);
+
+
     /**
      * 注册
      * @return
      */
     @POST(NetApi.register)
-    @FormUrlEncoded
-    Observable<FileBean> register(@FieldMap Map<String,String> map);
+    @Headers({"Content-Type: application/json","Accept: application/json"})
+    Observable<BaseBean> register(@Body  RequestBody body);
 }
