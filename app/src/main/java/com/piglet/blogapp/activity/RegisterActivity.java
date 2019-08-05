@@ -88,7 +88,7 @@ public class RegisterActivity extends BaseActivity {
                     startActivity(intent);
                     ToastUtils.showCenterToast("注册成功");
                 } else {
-                    ToastUtils.showCenterToast("注册失败");
+                    ToastUtils.showCenterToast(String.valueOf(result.getErrmsg()));
                 }
             }
 

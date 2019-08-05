@@ -7,7 +7,12 @@ import org.json.JSONException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.text.ParseException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.HttpException;
 
 
@@ -51,4 +56,27 @@ public class RxExceptionUtil {
         return msg;
     }
 
+    /**
+     * 把map参数放到requestbody
+     * @param hashMap
+     * @return
+     */
+    public static RequestBody getRequestBody(Map<String, String> hashMap) {
+        StringBuffer data = new StringBuffer("{");
+        if (hashMap != null && hashMap.size() > 0) {
+            Iterator iter = hashMap.entrySet().iterator();
+            while (iter.hasNext()) {
+                Map.Entry entry = (Map.Entry) iter.next();
+                Object key = entry.getKey();
+                Object val = entry.getValue();
+                data.append(key).append("=").append(val).append(",");
+            }
+        }
+        String jso = data.substring(0, data.length() - 1);
+        Log.e("aaaa",jso);
+        RequestBody requestBody =
+                RequestBody.create(MediaType.parse("application/json; charset=utf-8"),jso+"}");
+
+        return requestBody;
+    }
 }

@@ -88,7 +88,6 @@ public interface NetService {
     @Headers({"Content-Type: application/json","Accept: application/json"})
     Observable<BaseBean> loginBody(@Body RequestBody body);
 
-
     /**
      * 注册
      * @return

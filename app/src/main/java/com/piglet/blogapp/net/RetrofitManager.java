@@ -1,8 +1,6 @@
 package com.piglet.blogapp.net;
 
-import android.util.Config;
 import android.util.Log;
-
 
 import com.piglet.blogapp.BuildConfig;
 
