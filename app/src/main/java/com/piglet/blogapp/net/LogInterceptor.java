@@ -1,6 +1,13 @@
 package com.piglet.blogapp.net;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
+
+import com.piglet.blogapp.Myapplication;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -18,21 +25,18 @@ import okhttp3.ResponseBody;
  * @date 2019/1/16 0016
  */
 public class LogInterceptor implements Interceptor {
-    private static final String TAG = "okhtt3p";
+    private static final String TAG = "okhttp";
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request result=chain.request();
-        Log.e(TAG,result.toString());
-        //获取请求的时间
-        long t1=System.nanoTime();
         Response response = chain.proceed(result);
-        //获取请求成功的时间
-        long t2=System.nanoTime();
         MediaType mediaType=response.body().contentType();
         String content=response.body().string();
         //打印请求头
         if(response.headers().get("accesstoken")!=null){
             Log.e("accesstoken",response.headers().get("accesstoken"));
+            SharedPreferences sharedPreferences= Myapplication.getContext().getSharedPreferences("token", Context.MODE_PRIVATE);
+            sharedPreferences.edit().putString("accesstoken",response.headers().get("accesstoken")).apply();
         }
         Log.e(TAG,"responsebody"+content);
         return response.newBuilder()

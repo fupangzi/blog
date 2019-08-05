@@ -1,6 +1,7 @@
 package com.piglet.blogapp.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.piglet.blogapp.R;
+import com.piglet.blogapp.activity.BlogListActivity;
 import com.piglet.blogapp.adapter.TagsRvAdapter;
 import com.piglet.blogapp.base.BaseFragment;
 import com.piglet.blogapp.bean.TagBean;
@@ -62,6 +64,14 @@ public class Home3Fragment extends BaseFragment {
         rvTags.addItemDecoration(decorationHeight);
         rvTags.setLayoutManager(new GridLayoutManager(context, 3));
         tagsRvAdapter = new TagsRvAdapter(context, list);
+        tagsRvAdapter.setOnClickListener(new TagsRvAdapter.OnClickListener() {
+            @Override
+            public void onClickListener(String tag) {
+                Intent intent=new Intent(context, BlogListActivity.class);
+                intent.putExtra("tag",tag);
+                context.startActivity(intent);
+            }
+        });
         rvTags.setAdapter(tagsRvAdapter);
         empty.setAllButtonClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +96,6 @@ public class Home3Fragment extends BaseFragment {
         super.onDestroyView();
         unbinder.unbind();
     }
-
 
     //获取tag数据
     public void getData() {

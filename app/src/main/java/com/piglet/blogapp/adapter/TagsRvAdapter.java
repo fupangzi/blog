@@ -22,6 +22,12 @@ import butterknife.ButterKnife;
 public class TagsRvAdapter extends RecyclerView.Adapter<TagsRvAdapter.ViewHolder> {
     private Context mContext;
     private List<TagBean.DataBean> mList;
+    private OnClickListener onClickListener;
+
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
 
     public TagsRvAdapter(Context mContext, List<TagBean.DataBean> mList) {
         this.mContext = mContext;
@@ -40,6 +46,9 @@ public class TagsRvAdapter extends RecyclerView.Adapter<TagsRvAdapter.ViewHolder
         GlideUtils.loadImage(mContext,mList.get(i).getAvatar(),viewHolder.ivLogo);
         viewHolder.tvTagValue.setText(String.valueOf(mList.get(i).getTagName()));;
         viewHolder.tvCount.setText(String.valueOf(mList.get(i).getArticleCount()+" 文章"));
+        if(onClickListener!=null){
+            onClickListener.onClickListener(mList.get(i).getTagName());
+        }
     }
 
     @Override
@@ -59,5 +68,9 @@ public class TagsRvAdapter extends RecyclerView.Adapter<TagsRvAdapter.ViewHolder
             super(view);
             ButterKnife.bind(this, view);
         }
+    }
+
+    public  interface  OnClickListener{
+         void onClickListener(String tag);
     }
 }

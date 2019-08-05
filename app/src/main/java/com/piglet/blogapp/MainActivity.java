@@ -1,5 +1,6 @@
 package com.piglet.blogapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,12 +14,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.piglet.blogapp.activity.LoginActivity;
 import com.piglet.blogapp.adapter.MainVpAdapter;
 import com.piglet.blogapp.base.BaseActivity;
 import com.piglet.blogapp.fragment.Home2Fragment;
 import com.piglet.blogapp.fragment.Home3Fragment;
 import com.piglet.blogapp.fragment.Home4Fragment;
 import com.piglet.blogapp.fragment.HomeFragment;
+import com.piglet.blogapp.utils.SpUtils;
 import com.piglet.blogapp.utils.StatusBarUtil;
 import com.piglet.blogapp.view.NoScrollViewPager;
 
@@ -60,9 +63,22 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        checkLogin();
         //初始化控件
         initView();
     }
+
+
+    /**
+     * 判断用户是否已经登录 没有登录跳转到登录页面
+     */
+    public void checkLogin(){
+        if("".equals(SpUtils.getToken())){
+            Intent intent=new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
 
     /**
      * 初始化view控件

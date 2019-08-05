@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 
 
+import com.google.gson.Gson;
 import com.piglet.blogapp.view.MprogressDialog;
 
 import io.reactivex.Observer;
@@ -32,7 +33,8 @@ public abstract class Call<T> implements Observer<T> {
         // this.context = context;
         this(context, false);
     }
-
+    public Call() {
+    }
     public Call(Context context, boolean mShowDialog) {
         this.mShowDialog = mShowDialog;
         this.context = context;
