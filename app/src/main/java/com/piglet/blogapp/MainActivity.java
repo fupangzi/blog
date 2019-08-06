@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.piglet.blogapp.activity.LoginActivity;
+import com.piglet.blogapp.activity.SettingActivity;
 import com.piglet.blogapp.adapter.MainVpAdapter;
 import com.piglet.blogapp.base.BaseActivity;
 import com.piglet.blogapp.fragment.Home2Fragment;
@@ -23,7 +24,6 @@ import com.piglet.blogapp.fragment.Home4Fragment;
 import com.piglet.blogapp.fragment.HomeFragment;
 import com.piglet.blogapp.utils.SpUtils;
 import com.piglet.blogapp.utils.StatusBarUtil;
-import com.piglet.blogapp.view.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +55,14 @@ public class MainActivity extends BaseActivity {
     ViewPager viewPage;
     @BindView(R.id.bnv)
     BottomNavigationView bnv;
+    @BindView(R.id.rl_browse)
+    RelativeLayout rlBrowse;
+    @BindView(R.id.view1)
+    View view1;
+    @BindView(R.id.rl_setting)
+    RelativeLayout rlSetting;
+    @BindView(R.id.rl_pull)
+    RelativeLayout rlPull;
     //存储碎片页面
     private MainVpAdapter mainVpAdapter;
 
@@ -72,9 +80,9 @@ public class MainActivity extends BaseActivity {
     /**
      * 判断用户是否已经登录 没有登录跳转到登录页面
      */
-    public void checkLogin(){
-        if("".equals(SpUtils.getToken())){
-            Intent intent=new Intent(MainActivity.this, LoginActivity.class);
+    public void checkLogin() {
+        if ("".equals(SpUtils.getToken())) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
     }
@@ -93,7 +101,7 @@ public class MainActivity extends BaseActivity {
         bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.meun_home:
                         viewPage.setCurrentItem(0);
                         break;
@@ -118,7 +126,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int i) {
-                switch (i){
+                switch (i) {
                     case 0:
                         bnv.setSelectedItemId(R.id.meun_home);
                         break;
@@ -157,7 +165,7 @@ public class MainActivity extends BaseActivity {
         return list;
     }
 
-    @OnClick({R.id.gd, R.id.civ_img, R.id.tv_name})
+    @OnClick({R.id.gd, R.id.civ_img, R.id.tv_name, R.id.minefrgment_head,R.id.rl_pull,R.id.rl_setting})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.gd:
@@ -166,6 +174,14 @@ public class MainActivity extends BaseActivity {
             case R.id.civ_img:
                 break;
             case R.id.tv_name:
+                break;
+            case R.id.minefrgment_head:
+
+                break;
+            case R.id.rl_pull:
+                break;
+            case R.id.rl_setting:
+                startActivity(new Intent(MainActivity.this, SettingActivity.class));
                 break;
         }
     }

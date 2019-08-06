@@ -1,42 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl_pull"
+    >
+
     <RelativeLayout
         android:id="@+id/minefrgment_head"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/minefragment_head"
-        >
+        android:background="@drawable/minefragment_head">
+
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_img"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:id="@+id/civ_img"
-            android:src="@mipmap/ic_launcher"
-            />
+            android:src="@mipmap/ic_launcher" />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="名字"
             android:id="@+id/tv_name"
-            android:textSize="20sp"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/civ_img"
-            android:layout_alignTop="@id/civ_img"
-            android:textColor="@color/white"
-            />
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="个签"
-            android:id="@+id/tv_signature"
-            android:textSize="20sp"
+            android:layout_alignTop="@id/civ_img"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/civ_img"
-            android:layout_alignBottom="@id/civ_img"
+            android:text="Blog"
             android:textColor="@color/white"
-            />
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_signature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/civ_img"
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_toRightOf="@id/civ_img"
+            android:text="你是我天边最美的云彩，让我用心把你留下来"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/rl_browse"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+
+        android:background="@color/white"
+        android:layout_below="@id/minefrgment_head"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:text="浏览记录"
+            />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/right_a" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/rl_browse"
+        android:background="@color/backView"
+        android:id="@+id/view1"
+        ></View>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/rl_setting"
+        android:layout_marginTop="2dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:background="@color/white"
+        android:layout_below="@id/view1"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:text="设置"
+            />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/right_a" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_setting"
+        android:background="@color/backView"
+        android:id="@+id/view2"
+        ></View>
 </RelativeLayout>
