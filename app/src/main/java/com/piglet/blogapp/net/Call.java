@@ -28,7 +28,6 @@ public abstract class Call<T> implements Observer<T> {
     private MprogressDialog progressDialog;
     private Context context;
     private Disposable disposable;
-
     public Call(Context context) {
         // this.context = context;
         this(context, false);
@@ -38,8 +37,19 @@ public abstract class Call<T> implements Observer<T> {
     public Call(Context context, boolean mShowDialog) {
         this.mShowDialog = mShowDialog;
         this.context = context;
+
     }
 
+
+    /**
+     * 取消请求
+     */
+    public void cancelRequest(){
+        Log.e(TAG,"切断请求");
+        if(disposable!=null&&disposable.isDisposed()){
+            disposable.dispose();
+        }
+    }
 
     @Override
     public void onError(Throwable e) {
@@ -96,6 +106,7 @@ public abstract class Call<T> implements Observer<T> {
             @Override
             public void run() {
                 try {
+
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

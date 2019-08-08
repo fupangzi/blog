@@ -1,7 +1,5 @@
 package com.piglet.blogapp.base;
 
-import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
@@ -11,13 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.piglet.blogapp.R;
+import com.piglet.blogapp.net.Call;
 import com.piglet.blogapp.utils.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xm.emptylayout.EmptyLayout;
 
 import java.util.List;
-
-import butterknife.ButterKnife;
 
 /**
  * BaseActivity
@@ -27,16 +24,26 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
+
+    protected Call call;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
       //  setStatusBar(Color.WHITE);
         StatusBarUtil.setStatusBarFullTransparent(this);
         super.onCreate(savedInstanceState);
         StatusBarUtil.addStatusViewWithColor(this,getResources().getColor(R.color.yelloTitle));
-
     }
 
+    @Override
+    protected void onDestroy() {
+        //销毁时判断是否有请求
+        if(call!=null){
+            call.cancelRequest();
+        }
+        super.onDestroy();
 
+
+    }
 
     /**
      * 更改状态栏颜色

@@ -45,4 +45,5 @@ dependencies {
     implementation project(path: ':emptyLayout')
 
     implementation 'com.eftimoff:android-pathview:1.0.8@aar'
+    implementation 'com.github.ykrank:androidautodispose:0.4.0'
 }

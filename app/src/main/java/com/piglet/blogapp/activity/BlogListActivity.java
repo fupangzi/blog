@@ -140,7 +140,7 @@ public class BlogListActivity extends BaseActivity {
             map.put("date",selectDate);
             map.put("tag",tag);
             isLoading=true;
-            RequestUtils.articles(map, new Call<ArticleListBean>(BlogListActivity.this) {
+            call=new Call<ArticleListBean>(BlogListActivity.this) {
                 @Override
                 public void onSuccess(ArticleListBean result) {
                     isLoading=false;
@@ -160,7 +160,8 @@ public class BlogListActivity extends BaseActivity {
                     showErrLayout(empty,srl,isClear);
                     isLoading=false;
                 }
-            });
+            };
+            RequestUtils.articles(map, call);
         }
 
     }
